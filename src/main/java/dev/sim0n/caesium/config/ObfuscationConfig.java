@@ -1,115 +1,58 @@
-package dev.sim0n.caesium.config;
+// src/main/java/dev/sim0n/caesium/ObfuscationConfig.java
+package dev.sim0n.caesium;
 
-import lombok.Data;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 public class ObfuscationConfig {
-    // Input/Output
-    private String input;
-    private String output;
-    
-    // Dictionary settings
-    private DictionaryType dictionary = DictionaryType.NUMBERS;
-    
-    private StringMutatorConfig string = new StringMutatorConfig();
-    private ControlFlowConfig controlFlow = new ControlFlowConfig();
-    private NumberMutatorConfig number = new NumberMutatorConfig();
-    private ReferenceMutatorConfig reference = new ReferenceMutatorConfig();
-    private LocalVariableConfig localVariable = new LocalVariableConfig();
-    private LineNumberConfig lineNumber = new LineNumberConfig();
-    private PolymorphConfig polymorph = new PolymorphConfig();
-    private TrimConfig trim = new TrimConfig();
-    private ShuffleConfig shuffle = new ShuffleConfig();
-    private CrasherConfig crasher = new CrasherConfig();
-    private ClassFolderConfig classFolder = new ClassFolderConfig();
-    
-    // Libraries (classpath dependencies)
+    private File input;
+    private File output;
+    private boolean stringEncryption = false;
+    private List<String> stringExclusions = new ArrayList<>();
+    private boolean controlFlow = false;
+    private boolean numberObfuscation = false;
+    private boolean polymorph = false;
+    private boolean trimMath = false;
+    private boolean shuffleMembers = false;
+    private String localVariableAction = "OFF";
+    private String lineNumberAction = "OFF";
     private List<String> libraries = new ArrayList<>();
+
+    // Getters and Setters
+    public File getInput() { return input; }
+    public void setInput(File input) { this.input = input; }
     
-    public enum DictionaryType {
-        ABC_LOWERCASE, 
-        ABC, 
-        III, 
-        NUMBERS, 
-        WACK
-    }
+    public File getOutput() { return output; }
+    public void setOutput(File output) { this.output = output; }
     
-    @Data
-    public static class StringMutatorConfig {
-        private boolean enabled = false;
-        private List<String> exclusions = new ArrayList<>();
-    }
+    public boolean isStringEncryption() { return stringEncryption; }
+    public void setStringEncryption(boolean stringEncryption) { this.stringEncryption = stringEncryption; }
     
-    @Data
-    public static class ControlFlowConfig {
-        private boolean enabled = false;
-    }
+    public List<String> getStringExclusions() { return stringExclusions; }
+    public void setStringExclusions(List<String> stringExclusions) { this.stringExclusions = stringExclusions; }
     
-    @Data
-    public static class NumberMutatorConfig {
-        private boolean enabled = false;
-    }
+    public boolean isControlFlow() { return controlFlow; }
+    public void setControlFlow(boolean controlFlow) { this.controlFlow = controlFlow; }
     
-    @Data
-    public static class ReferenceMutatorConfig {
-        private boolean enabled = false;
-        private ReferenceType type = ReferenceType.NORMAL;
-        
-        public enum ReferenceType {
-            OFF, 
-            LIGHT, 
-            NORMAL
-        }
-    }
+    public boolean isNumberObfuscation() { return numberObfuscation; }
+    public void setNumberObfuscation(boolean numberObfuscation) { this.numberObfuscation = numberObfuscation; }
     
-    @Data
-    public static class LocalVariableConfig {
-        private boolean enabled = false;
-        private LocalVariableAction action = LocalVariableAction.OFF;
-        
-        public enum LocalVariableAction {
-            OFF, 
-            REMOVE, 
-            RENAME
-        }
-    }
+    public boolean isPolymorph() { return polymorph; }
+    public void setPolymorph(boolean polymorph) { this.polymorph = polymorph; }
     
-    @Data
-    public static class LineNumberConfig {
-        private boolean enabled = false;
-        private LineNumberAction action = LineNumberAction.OFF;
-        
-        public enum LineNumberAction {
-            OFF, 
-            REMOVE, 
-            SCRAMBLE
-        }
-    }
+    public boolean isTrimMath() { return trimMath; }
+    public void setTrimMath(boolean trimMath) { this.trimMath = trimMath; }
     
-    @Data
-    public static class PolymorphConfig {
-        private boolean enabled = false;
-    }
+    public boolean isShuffleMembers() { return shuffleMembers; }
+    public void setShuffleMembers(boolean shuffleMembers) { this.shuffleMembers = shuffleMembers; }
     
-    @Data
-    public static class TrimConfig {
-        private boolean enabled = false;
-    }
+    public String getLocalVariableAction() { return localVariableAction; }
+    public void setLocalVariableAction(String localVariableAction) { this.localVariableAction = localVariableAction; }
     
-    @Data
-    public static class ShuffleConfig {
-        private boolean enabled = false;
-    }
+    public String getLineNumberAction() { return lineNumberAction; }
+    public void setLineNumberAction(String lineNumberAction) { this.lineNumberAction = lineNumberAction; }
     
-    @Data
-    public static class CrasherConfig {
-        private boolean enabled = false;
-    }
-    
-    @Data
-    public static class ClassFolderConfig {
-        private boolean enabled = false;
-    }
+    public List<String> getLibraries() { return libraries; }
+    public void setLibraries(List<String> libraries) { this.libraries = libraries; }
 }
