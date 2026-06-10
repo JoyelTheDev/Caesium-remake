@@ -1,5 +1,5 @@
 // src/main/java/dev/sim0n/caesium/ObfuscationConfig.java
-package dev.sim0n.caesium;
+package dev.sim0n.caesium.config;
 
 import java.io.File;
 import java.util.ArrayList;
